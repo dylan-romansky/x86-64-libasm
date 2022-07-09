@@ -1,0 +1,17 @@
+argument registers: RDI, RSI, RDX, RCX, R8, R9
+floating arg reges: XMM0-XMM7
+RBP, RBX, R12-R15 must be preserved by the called function
+RAX or RDX:RAX are return registers. XMM0 or XMM1:XMM0 are for floats
+
+excess args go on the stack, last to first, get removed by the caller afterwards
+return address is at RSP
+
+RSP must be 16bit aligned when a call is made. is off by 8 after a call
+
+GLOBAL declares something is defined here and also able to be used elsewhere
+EXTERN declares something is being used here that is defined elsewhere
+
+static chain pointer: R10
+
+https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
+http://linasm.sourceforge.net/docs/instructions/index.php
