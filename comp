@@ -2,7 +2,7 @@
 
 for each in *.s; do
 	echo $each
-	nasm -f elf64 $each
+	nasm -f elf64 -g $each
 done
-gcc *.o test.c
+gcc -g *.o test.c
 ./a.out
