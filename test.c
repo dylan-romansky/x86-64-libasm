@@ -44,4 +44,20 @@ int main(void)
 
 	char *s = ft_strdup("boonanana\n");
 	ft_write(1, s, ft_strlen(s));
+	free(s);
+/*	s = strdup(NULL);
+	if (s)	{
+		free(s);
+		printf("success 1\n");
+	}
+	else
+		printf("wait");
+	s = strdup("");
+	printf("%s\n", s);
+	free(s);
+	printf("%d\n", strlen(NULL));
+	printf("success 2\n");
+	printf("%d\n", strcmp("test", NULL));
+	printf("%d\n", strcmp(NULL, "test"));
+*/
 }
