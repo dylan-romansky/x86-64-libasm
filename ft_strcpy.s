@@ -11,9 +11,9 @@ ft_strcpy:
 increment:
 	inc rcx
 move:
-	mov dl, BYTE [rsi + rcx]
-	mov BYTE [rdi + rcx], dl
-	cmp dl, 0
+	mov dl, BYTE [rsi + rcx]	;i = s2[j]
+	mov BYTE [rdi + rcx], dl	;s1[j] = i
+	cmp dl, 0	;i != '\0'
 	jne increment
 return:
 	mov rax, rdi

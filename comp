@@ -4,5 +4,5 @@ for each in *.s; do
 	echo $each
 	nasm -f elf64 -g $each
 done
-gcc -g *.o test.c
+gcc -no-pie -g *.o test.c
 ./a.out
