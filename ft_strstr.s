@@ -7,14 +7,13 @@ _ft_strstr:
 	push rdi		;put rdi on the stack and
 	mov rdi, rsi	;move rsi to rdi so we can
 	call ft_strlen	;take the length of needle,
+	cmp rax, 0		;if it's 0 we just return
+	jz loadmatch	; haystack, otherwise we
 	mov rdx, rax	;store that length for future
 	dec rdx			;use, put needle and haystack
 	mov rsi, rdi	;back so we can use ft_memcmp
 	pop rdi			;to do our search
 	xor rcx, rcx
-	mov cl, BYTE[rsi]
-	cmp cl, 0
-	jz loadmatch
 	jmp search
 increment:
 	inc rdi

@@ -9,6 +9,7 @@ int	ft_strlen(char const *s);
 char *ft_strcpy(char *restrict dst, const char *src);
 char *ft_strncpy(char *restrict dest, const char *restrict src, size_t n);
 int ft_strcmp(char const *s1, char const *s2);
+int ft_strncmp(char const *s1, char const *s2, size_t n);
 size_t ft_write(int fd, const void *buf, size_t count);
 size_t ft_read(int fd, const void *buf, size_t count);
 char *ft_strdup(const char *s);
@@ -28,6 +29,7 @@ size_t ft_strlcat(char *dst, const char *src, size_t size);
 char *ft_strchr(const char *s, int c);
 char *ft_strrchr(const char *s, int c);
 char *ft_strstr(const char *haystack, const char *needle);
+char *ft_strnstr(const char *haystack, const char *needle, size_t n);
 
 int main(void)
 {
@@ -113,6 +115,11 @@ int main(void)
 	printf("%p\n", ft_strrchr(big, 'z'));
 	printf("%s\n", ft_strstr("test", "es"));
 	printf("%p\n", ft_strstr("test", "o"));
+	printf("n test go yeah\n");
+	printf("%d\n", ft_strncmp("ben", "benas", 3));
+	printf("%d\n", ft_strncmp("ben", "benas", 4));
+	printf("%p\n", ft_strnstr("big testy", "test", 4));
+	printf("%s\n", ft_strnstr("big testy", "test", 6));
 /*	s = strdup(NULL);
 	if (s)	{
 		free(s);
