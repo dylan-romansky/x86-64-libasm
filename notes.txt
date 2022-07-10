@@ -1,4 +1,5 @@
 argument registers: RDI, RSI, RDX, RCX, R8, R9
+are rd1 and rsi literally only pointer registers?
 floating arg reges: XMM0-XMM7
 RBP, RBX, R12-R15 must be preserved by the called function
 RAX or RDX:RAX are return registers. XMM0 or XMM1:XMM0 are for floats
@@ -12,6 +13,14 @@ GLOBAL declares something is defined here and also able to be used elsewhere
 EXTERN declares something is being used here that is defined elsewhere
 
 static chain pointer: R10
+
+WORD: On the x64 architecture, the word size is 16 bits. In C/C++, you might be more familiar with the term short.
+DWORD: Short for “double word”, this means 2 × 16 bit words, which means 32 bits. In C/C++, you might be more familiar with the term int.
+oword: Short for “octa-word” this means 8 × 16 bit words, which totals 128 bits. This term is used in NASM syntax.
+yword: Also used only in NASM syntax, this refers to 256 bits in terms of size (i.e. the size of ymm register.)
+float: This means 32 bits for a single-precision floating point under the IEEE 754 standards.
+double: This means 64 bits for a double-precision floating point under the IEEE 754 standard. This is also referred to as a quad word.
+Pointers: On the x64 ISA, pointers are all 64-bit addresses.
 
 https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
 http://linasm.sourceforge.net/docs/instructions/index.php

@@ -1,9 +1,0 @@
-#!/bin/bash
-
-rm a.out
-for each in *.s; do
-	echo $each
-	nasm -f elf64 -g $each
-done
-gcc -no-pie -g *.o test.c
-./a.out

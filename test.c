@@ -29,7 +29,7 @@ size_t ft_strlcat(char *dst, const char *src, size_t size);
 char *ft_strchr(const char *s, int c);
 char *ft_strrchr(const char *s, int c);
 char *ft_strstr(const char *haystack, const char *needle);
-char *ft_strnstr(const char *haystack, const char *needle, size_t n);
+int ft_atoi(const char *nptr);
 
 int main(void)
 {
@@ -115,11 +115,20 @@ int main(void)
 	printf("%p\n", ft_strrchr(big, 'z'));
 	printf("%s\n", ft_strstr("test", "es"));
 	printf("%p\n", ft_strstr("test", "o"));
-	printf("n test go yeah\n");
 	printf("%d\n", ft_strncmp("ben", "benas", 3));
 	printf("%d\n", ft_strncmp("ben", "benas", 4));
-	printf("%p\n", ft_strnstr("big testy", "test", 4));
-	printf("%s\n", ft_strnstr("big testy", "test", 6));
+
+	printf("atoi test go yeah\n");
+	printf("%d\n", ft_atoi("69"));
+	printf("%d\n", ft_atoi("-69"));
+	printf("%d\n", ft_atoi("  -6969"));
+	printf("%d\n", ft_atoi(" \t\n\r\v\f   -6969"));
+	printf("%d\n", ft_atoi(" \t\n\r\v\f   -69d69"));
+	printf("%d\n", ft_atoi("--5"));
+	printf("%d\n", ft_atoi("+-5"));
+	printf("%d\n", ft_atoi("-+5"));
+	printf("%d\n", ft_atoi("- 5"));
+	printf("%d\n", ft_atoi("+ 5"));
 /*	s = strdup(NULL);
 	if (s)	{
 		free(s);
