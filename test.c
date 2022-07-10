@@ -25,6 +25,8 @@ void *ft_memset(void *s, int c, size_t n);
 char *ft_strcat(char *restrict dest, const char *restrict src);
 char *ft_strncat(char *restrict dest, const char *restrict src, size_t n);
 size_t ft_strlcat(char *dst, const char *src, size_t size);
+char *ft_strchr(const char *s, int c);
+char *ft_strrchr(const char *s, int c);
 
 int main(void)
 {
@@ -104,6 +106,10 @@ int main(void)
 	strcpy(big, "nuttleson");
 	printf("strlcat %d\n", ft_strlcat(big, st2, 12));
 	printf("%s\n", big);
+	printf("%s\n", ft_strchr(big, 't'));
+	printf("%p\n", ft_strchr(big, 'z'));
+	printf("%s\n", ft_strrchr(big, 't'));
+	printf("%p\n", ft_strrchr(big, 'z'));
 /*	s = strdup(NULL);
 	if (s)	{
 		free(s);
