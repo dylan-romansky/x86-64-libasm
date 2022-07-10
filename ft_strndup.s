@@ -1,5 +1,5 @@
 section .text
-global ft_strdup, _ft_strdup
+global ft_strndup, _ft_strndup
 extern malloc, ft_strlen
 
 ; I might put the null protection back but I kind of
@@ -12,25 +12,29 @@ extern malloc, ft_strlen
 ; the extra call/return sequence on top of
 ; the wasted machine cycles from effectively calling
 ; ft_strlen twice
-ft_strdup:
-_ft_strdup:
+ft_strndup:
+_ft_strndup:
 ;	cmp rdi, 0	;protection from null input
 ;	jz return
-	call ft_strlen	;get length of char *s
 	push rdi		;put s on the stack
-	mov rdi, rax	;move the length to the first argument register
-	push rax		;save the length for later
+	inc rsi
+	mov rdi, rsi	;move the length to the first argument register
 	call malloc
-	pop rdx			;retrieve the length
-	pop rsi			;put s in rsi
-	xor rdi, rdi		;i = 0
+	mov rdi, rsi
+	dec rsi
+	pop rdi			;retrieve the length
+	xor r8, r8
 	jmp copy
 increment:
-	inc rdi
+	inc r8
 copy:
-	mov cl, BYTE[rsi + rdi]
-	mov BYTE[rax + rdi], cl
-	cmp rdi, rdx
+	mov cl, BYTE[rdi + r8]
+	mov BYTE[rax + r8], cl
+	cmp cl, 0
+	jz return
+	cmp rdi, r8
 	jnz increment
+	inc r8
+	mov BYTE[rax + r8], 0
 return:
 	ret
