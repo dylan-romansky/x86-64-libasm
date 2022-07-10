@@ -27,6 +27,7 @@ char *ft_strncat(char *restrict dest, const char *restrict src, size_t n);
 size_t ft_strlcat(char *dst, const char *src, size_t size);
 char *ft_strchr(const char *s, int c);
 char *ft_strrchr(const char *s, int c);
+char *ft_strstr(const char *haystack, const char *needle);
 
 int main(void)
 {
@@ -110,6 +111,8 @@ int main(void)
 	printf("%p\n", ft_strchr(big, 'z'));
 	printf("%s\n", ft_strrchr(big, 't'));
 	printf("%p\n", ft_strrchr(big, 'z'));
+	printf("%s\n", ft_strstr("test", "es"));
+	printf("%p\n", ft_strstr("test", "o"));
 /*	s = strdup(NULL);
 	if (s)	{
 		free(s);
