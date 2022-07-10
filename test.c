@@ -47,6 +47,7 @@ int main(void)
 			printf("Error:\n\t%s\n\t%s\n", b, c, strset[i], strset[i + 1]);
 	}
 */
+/*
 	ft_write(1, "test\n", 5);
 	int fd = open("test.txt", O_RDONLY);
 	char buf[5];
@@ -83,21 +84,21 @@ int main(void)
 
 	char *ay = ft_memchr(st, 'n', 5);
 //	printf("%s\n%lp\n%p\n", st, st, ay);
-
-	char *st2 = "benaz\n";
+*/
+//	char *st2 = "benaz\n";
 //	printf("%d\n", ft_memcmp(st, st2, 3));
 //	printf("%d\n", ft_memcmp(st, st2, 4));
-	ft_strcpy(su, "but");
-	ft_strcat(su, "nut");
-	ft_write(1, "this\n", 5);
-	ft_write(1, su, 6);
-	ft_write(1, "\n", 1);
-	ft_strcpy(su, "but");
-	ft_strncat(su, "fu", 2);
-	ft_write(1, su, 6);
-	ft_write(1, "\n", 1);
+//	ft_strcpy(su, "but");
+//	ft_strcat(su, "nut");
+//	ft_write(1, "this\n", 5);
+//	ft_write(1, su, 6);
+//	ft_write(1, "\n", 1);
+//	ft_strcpy(su, "but");
+///	ft_strncat(su, "fu", 2);
+//	ft_write(1, su, 6);
+//	ft_write(1, "\n", 1);
 	char big[12] = "nutt";
-	st2 = "buttly";
+	char *st2 = "buttly";
 	printf("strlcat %d\n", ft_strlcat(big, st2, 12));
 	printf("%s\n", big);
 	strcpy(big, "nuttleson");

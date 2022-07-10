@@ -18,7 +18,7 @@ increment:
 	inc rcx
 	inc r8
 catlad:
-	cmp r8, rdx
+	cmp rcx, rdx
 	jz return
 	mov r9b, BYTE[rsi + r8]
 	mov BYTE[rdi + rcx], r9b
