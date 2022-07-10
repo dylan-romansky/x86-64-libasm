@@ -23,6 +23,8 @@ void *ft_memmove(void *restrict dest, const void *restrict src, size_t n);
 void *ft_memset(void *s, int c, size_t n);
 
 char *ft_strcat(char *restrict dest, const char *restrict src);
+char *ft_strncat(char *restrict dest, const char *restrict src, size_t n);
+size_t ft_strlcat(char *dst, const char *src, size_t size);
 
 int main(void)
 {
@@ -90,6 +92,17 @@ int main(void)
 	ft_write(1, "this\n", 5);
 	ft_write(1, su, 6);
 	ft_write(1, "\n", 1);
+	ft_strcpy(su, "but");
+	ft_strncat(su, "fu", 2);
+	ft_write(1, su, 6);
+	ft_write(1, "\n", 1);
+	char big[12] = "nutt";
+	st2 = "buttly";
+	printf("strlcat %d\n", ft_strlcat(big, st2, 12));
+	printf("%s\n", big);
+	strcpy(big, "nuttleson");
+	printf("strlcat %d\n", ft_strlcat(big, st2, 12));
+	printf("%s\n", big);
 /*	s = strdup(NULL);
 	if (s)	{
 		free(s);
