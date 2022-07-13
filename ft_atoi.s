@@ -8,22 +8,22 @@ _ft_atoi:
 	jmp filter
 incrementfilter:
 	inc rdi
-filter:
+filter:			;filter through leading whitespace
 	mov sil, BYTE[rdi]
 	cmp sil, ' '
 	jz incrementfilter
-	sub sil, 9
+	sub sil, 9	;other than ' ', the whitespace lives between ascii values 9-13
 	cmp sil, 4
 	ja sign
 	jmp incrementfilter
 sign:
-	add sil, 9
+	add sil, 9	;undo the subtraction for the whitespace comparison
 	xor rax, rax
 	cmp sil, '-'
 	jz setneg
 	jmp getnum
-setneg:
-	xor r8, r8
+setneg:			;thought about using cmovz but I still need to increment
+	xor r8, r8	;if I find a '-' where I don't if I don't find one
 	mov r8, '-'
 incnums:
 	inc rdi
@@ -43,6 +43,5 @@ return:
 	jz negafy
 	ret
 negafy:
-	mov rdx, -1
-	imul rdx
+	neg rax
 	ret

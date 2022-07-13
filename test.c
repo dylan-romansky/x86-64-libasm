@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include <inttypes.h>
 
 int	ft_strlen(char const *s);
@@ -31,117 +32,37 @@ char *ft_strrchr(const char *s, int c);
 char *ft_strstr(const char *haystack, const char *needle);
 int ft_atoi(const char *nptr);
 
+
+char *tests[] = { "test", "this is a test", "", NULL };
+
+void	strlenTest()	{
+	bool pass = true;
+	printf("strlen test:\n");
+	for (int i = 0; tests[i] != NULL; i++)
+		if (ft_strlen(tests[i]) != strlen(tests[i]))	{
+			printf("fail: %s\n", tests[i]);
+			pass = false;
+		}
+	printf(pass ? "Passed!\n\n" : "Failed...\n\n");
+}
+
+void	writeTest()	{
+	bool pass = true;
+	int fd = open("/dev/null", O_RDWR);
+	printf("write test:\n");
+	for (int i = 0; tests[i] != NULL; i++)	{
+		int len = strlen(tests[i]);
+		if (ft_write(fd, tests[i], len) != write(fd, tests[i], len))	{
+			printf("fail: %s\n", tests[i]);
+			pass = false;
+		}
+	}
+	printf(pass ? "Passed!\n\n" : "Failed...\n\n");
+}
+
 int main(void)
 {
-/*
-	int j = ft_strlen("ligma");
-	char beans[5];
-	char peans[5];
-	printf("%d\n", j);
-	printf("%s\n", beans);
-	ft_strcpy(beans, "benas");
-	printf("%s\n", beans);
-
-	char *strset[] = {"jgdisaojg4390jS)Dsg()ET$(#)JT$RIO", "8HGDU8(*uyD78Y0F7ES&&fD8fg&g8HFujfioj#(@io3?>:f:s))", ")(udsFEKFOE3WQ90J8FERFJH)h&8H&88H07h08(JH*$#)", "10294", "?!@#$90i2r$(I), jsaidjoidsgji", NULL};
-	for (int i = 0; strset[i + 1]; i++)
-	{
-		int b = ft_strcmp(strset[i], strset[i + 1]);
-		int c = strcmp(strset[i], strset[i + 1]);
-		printf ("%d == %d ?\n", b, c);
-		if (b != c)
-			printf("Error:\n\t%s\n\t%s\n", b, c, strset[i], strset[i + 1]);
-	}
-*/
-/*
-	ft_write(1, "test\n", 5);
-	int fd = open("test.txt", O_RDONLY);
-	char buf[5];
-	ft_read(fd, buf, 5);
-	ft_write(1, buf, 5);
-	close(fd);
-	fd = open("test.txt", O_RDONLY);
-	read(fd, buf, 5);
-	write(1, buf, 5);
-
-	char *s = ft_strdup("boonanana\n");
-	ft_write(1, s, ft_strlen(s));
-	free(s);
-	char *st = "benas\n";
-	char su[7] = "buttzz\n";
-	char *trip = ft_memmove(su, st, 3);
-	ft_write(1, trip, ft_strlen(trip));
-	ft_memset(trip, '\0', 7);
-	ft_memset(trip, 'f', 6);
-	ft_write(1, trip, 7);
-	ft_write(1, su, 3);
-	ft_write(1, "\n", 1);
-	s = ft_strndup(st, 4);
-	ft_write(1, s, ft_strlen(s));
-	free(s);
-	s = ft_strndup(st, 9);
-	ft_write(1, s, ft_strlen(s));
-	free(s);
-	char hsdgu[4] = "test";
-//	printf("%s\n", hsdgu);
-//	ft_bzero(hsdgu, 4);
-//	for (int i = 0; i < 4; i++)
-//		printf("%hhd\n", hsdgu[i]);
-
-	char *ay = ft_memchr(st, 'n', 5);
-//	printf("%s\n%lp\n%p\n", st, st, ay);
-*/
-//	char *st2 = "benaz\n";
-//	printf("%d\n", ft_memcmp(st, st2, 3));
-//	printf("%d\n", ft_memcmp(st, st2, 4));
-//	ft_strcpy(su, "but");
-//	ft_strcat(su, "nut");
-//	ft_write(1, "this\n", 5);
-//	ft_write(1, su, 6);
-//	ft_write(1, "\n", 1);
-//	ft_strcpy(su, "but");
-///	ft_strncat(su, "fu", 2);
-//	ft_write(1, su, 6);
-//	ft_write(1, "\n", 1);
-	char big[12] = "nutt";
-	char *st2 = "buttly";
-	printf("strlcat %d\n", ft_strlcat(big, st2, 12));
-	printf("%s\n", big);
-	strcpy(big, "nuttleson");
-	printf("strlcat %d\n", ft_strlcat(big, st2, 12));
-	printf("%s\n", big);
-	printf("%s\n", ft_strchr(big, 't'));
-	printf("%p\n", ft_strchr(big, 'z'));
-	printf("%s\n", ft_strrchr(big, 't'));
-	printf("%p\n", ft_strrchr(big, 'z'));
-	printf("%s\n", ft_strstr("test", "es"));
-	printf("%p\n", ft_strstr("test", "o"));
-	printf("%d\n", ft_strncmp("ben", "benas", 3));
-	printf("%d\n", ft_strncmp("ben", "benas", 4));
-
-	printf("atoi test go yeah\n");
-	printf("%d\n", ft_atoi("69"));
-	printf("%d\n", ft_atoi("-69"));
-	printf("%d\n", ft_atoi("  -6969"));
-	printf("%d\n", ft_atoi(" \t\n\r\v\f   -6969"));
-	printf("%d\n", ft_atoi(" \t\n\r\v\f   -69d69"));
-	printf("%d\n", ft_atoi("--5"));
-	printf("%d\n", ft_atoi("+-5"));
-	printf("%d\n", ft_atoi("-+5"));
-	printf("%d\n", ft_atoi("- 5"));
-	printf("%d\n", ft_atoi("+ 5"));
-/*	s = strdup(NULL);
-	if (s)	{
-		free(s);
-		printf("success 1\n");
-	}
-	else
-		printf("wait");
-	s = strdup("");
-	printf("%s\n", s);
-	free(s);
-	printf("%d\n", strlen(NULL));
-	printf("success 2\n");
-	printf("%d\n", strcmp("test", NULL));
-	printf("%d\n", strcmp(NULL, "test"));
-*/
+	strlenTest();
+	writeTest();
+	printf("tests complete\n");
 }
