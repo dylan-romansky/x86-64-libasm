@@ -32,6 +32,8 @@ char *ft_strrchr(const char *s, int c);
 char *ft_strstr(const char *haystack, const char *needle);
 int ft_atoi(const char *nptr);
 
+char *ft_itoa_base(int i, int base);
+
 
 char *tests[] = { "test", "this is a test", "", NULL };
 
@@ -60,9 +62,21 @@ void	writeTest()	{
 	printf(pass ? "Passed!\n\n" : "Failed...\n\n");
 }
 
+void	itoaTest()	{	//add a check for intmax
+	char *test;
+	int checks[] = { 16, -16, 0, 16439634 };
+	char *against[] = { "16", "-16", "0", "16439634" };
+	for (int i = 0; i < 4; i++)	{
+		test = ft_itoa_base(checks[i], 10);
+		if (strcmp(test, against[i]))
+			printf("Fail %s != %s\n", test, against[i]);
+	}
+}
+
 int main(void)
 {
 	strlenTest();
 	writeTest();
+	itoaTest();
 	printf("tests complete\n");
 }
