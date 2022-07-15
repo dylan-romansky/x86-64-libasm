@@ -3,65 +3,63 @@ section .text
 global ft_itoa_base, _ft_itoa_base
 extern malloc
 
-;this is disgusting and horrible and I need to know why the div doesn't wanna
-;truncate to zero. and also why malloc is putting the return value in rax and
-;also rcx. and why r8 ends up with the value from rdi
-
+;explore the differences between div and idiv
 ft_itoa_base:
 _ft_itoa_base:
 	xor rax, rax
 	cmp rsi, 16		;if (base > 16)
-	jge return
+	jg return
 	mov rax, rdi	;setting up for number length count
-	xor rcx, rcx
-	inc rcx			;i = 1
+	mov rcx, 1
 count:
 	inc rcx
-	div rsi			;while (num >= 0) {
-	cmp rax, rsi	;	num /= base;
-	jg count		;	i++;
-	inc rcx			;}
+	cmp rax, rsi
+	jl make
+	div rsi
+	jmp count
+make:
 	cmp rsi, 10		;if (base != 10 || num > 0) { makePos() }
-	jne makePos
+	jnz makePos
 	cmp rdi, 0
-	jg makePos
+	jnz makePos
 	inc rcx
 makePos:
 	push rdi
+	push rsi
 	mov rdi, rcx
 	call malloc
-	pop rdi
-	mov r8, rax
-	dec rcx
-	cmp rdi, 0
-	jge addem
-	mov BYTE[rcx], '-'
-addem:
-	mov BYTE[r8 + rcx], 0
-	mov rax, rdi
+	pop rsi
+	pop rax			;our given number needs to get here anyway so why not
+	dec r8
+	cmp rax, 0
+	jge terminate
+	mov BYTE[rdi], '-'
+terminate:
+	mov BYTE[rdi + r8], 0
 decrement:
-	dec rcx
+	dec r8
 	cmp rax, rsi
-	jle movem
+	jl movem
 	jmp divem
 movem:
 	mov rdx, rax
-	jmp docon
+	jmp makem
 divem:
 	div rsi
-	jmp docon
-docon:
+makem:
 	cmp rdx, 10
 	jge conhex
 	add rdx, '0'
-	mov BYTE[r8 + rcx], dl
-	cmp rcx, 0
+	mov BYTE[rdi + r8], dl
+	cmp r8, 0
 	jz return
 	jmp decrement
 conhex:
 	add rdx, 'a'
-	mov BYTE[r8 + rcx], dl
+	mov BYTE[rdi + r8], dl
+	cmp r8, 0
+	jz return
 	jmp decrement
 return:
-	mov rax, rcx
+	mov rax, rdi
 	ret

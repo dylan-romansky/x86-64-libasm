@@ -22,5 +22,6 @@ fclean: clean
 re: fclean $(NAME)
 
 test: re
+	make clean
 	gcc -no-pie -g test.c -L. -lasm -o tester
 	./tester

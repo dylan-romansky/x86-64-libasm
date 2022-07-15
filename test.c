@@ -70,6 +70,9 @@ void	itoaTest()	{	//add a check for intmax
 		test = ft_itoa_base(checks[i], 10);
 		if (strcmp(test, against[i]))
 			printf("Fail %s != %s\n", test, against[i]);
+		else
+			printf("Pass: %s\n", against[i]);
+		free(test);
 	}
 }
 
