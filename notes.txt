@@ -4,6 +4,8 @@ floating arg reges: XMM0-XMM7
 RBP, RBX, R12-R15 must be preserved by the called function
 RAX or RDX:RAX are return registers. XMM0 or XMM1:XMM0 are for floats
 
+DIV and MUL use rdx:rax as a single operand so the divisor/multiplier must be in another register
+
 excess args go on the stack, last to first, get removed by the caller afterwards
 return address is at RSP
 
